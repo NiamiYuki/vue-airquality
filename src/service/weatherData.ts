@@ -10,22 +10,23 @@ class WeatherDataService {
 
   loadData(): Promise<void> {
     const fetches = [] as Promise<AirInfo>[]
+    console.log(this.townStore.towns)
     for (const town of this.townStore.towns) {
       fetches.push(
         fetch(this.request + town).then(
-          resp => resp.json as unknown as AirInfo,
+          resp => resp.json() as Promise<AirInfo>,
         ),
       )
     }
     return Promise.all(fetches).then(dataArr => {
       const res = {} as WeatherStore
-      for (const [index, data] of dataArr.entries()) {
-        res[this.townStore.towns[index]] = {
+      for (const data of dataArr) {
+        res[data.location.name] = {
           pm2_5: data.current.air_quality.pm2_5,
           index: data.current.air_quality['us-epa-index'],
         }
       }
-      this.weatherStore.set(res)
+      this.weatherStore.setWeather(res)
     })
   }
 }

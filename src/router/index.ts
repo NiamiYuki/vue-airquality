@@ -21,19 +21,16 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/data',
       name: 'data',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: AirInfoContainer,
       beforeEnter: weatherResolver,
-      alias: '/data',
     },
     {
-      path: '/manage',
+      path: '/',
       name: 'manage',
       component: TownManagementContainer,
+      alias: '/manage',
     },
   ],
 })

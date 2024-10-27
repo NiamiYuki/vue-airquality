@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import type { AirQuality } from '@/stores/air-data'
 
-// const token = '8a73d1ffc2f24cf3919202701242610 '
-const request =
-  '/v1/current.json?q=tambov&key=8a73d1ffc2f24cf3919202701242610&aqi=yes'
-let data = null
-
-// lifecycle hooks
-onMounted(() => {
-  fetch(request)
-    .then(resp => resp.json)
-    .then(json => (data = json))
-})
+const props = defineProps(['town', 'air']) as {
+  town: string
+  air: AirQuality
+}
 </script>
 
-<template>air-info her {{ data }}e</template>
+<template>{{ props.town }}: {{ props.air.pm2_5 }}</template>
