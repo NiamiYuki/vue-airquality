@@ -23,15 +23,41 @@ function remove(town: string) {
 </script>
 
 <template>
-  <form>
-    <div v-for="town in townsStore.towns" v-bind:key="town">
-      {{ town }}
-      <button @click="remove(town)">delete</button>
+  <form class="">
+    <div
+      v-for="town in townsStore.towns"
+      v-bind:key="town"
+      class="field has-addons"
+    >
+      <button
+        class="button is-danger is-rounded is-small"
+        @click="remove(town)"
+      >
+        X
+      </button>
+      <div class="control">
+        {{ town }}
+      </div>
     </div>
-    <div v-if="isEdiiting">
-      <input v-model="editingValue" />
-      <button @click="saveEditing">Save</button>
+    <div v-if="isEdiiting" class="field has-addons">
+      <div class="control">
+        <input class="input" v-model="editingValue" />
+      </div>
+      <div class="control">
+        <button @click="saveEditing" class="button">Save</button>
+      </div>
     </div>
-    <div v-else><button @click="editState(true)">Add</button></div>
+    <div v-else>
+      <button class="button" @click="editState(true)">Add</button>
+    </div>
   </form>
 </template>
+
+<style scoped>
+.towns-form {
+  display: flex;
+  flex-direction: column;
+}
+.added-town-name {
+}
+</style>

@@ -3,14 +3,19 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/manage">Manage towns</RouterLink>
-      <RouterLink to="/data">View info</RouterLink>
+  <header class="bg-gray-800">
+    <nav class="navbar">
+      <RouterLink to="/manage" class="navbar-item">Manage towns</RouterLink>
+      <RouterLink to="/data" class="navbar-item">View info</RouterLink>
     </nav>
   </header>
 
   <RouterView />
 </template>
 
-<style scoped></style>
+<style scoped>
+.router-link-active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+</style>
