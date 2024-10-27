@@ -41,7 +41,11 @@ function remove(town: string) {
     </div>
     <div v-if="isEdiiting" class="field has-addons">
       <div class="control">
-        <input class="input" v-model="editingValue" />
+        <input
+          class="input"
+          v-model="editingValue"
+          placeholder="Введите название города"
+        />
       </div>
       <div class="control">
         <button @click="saveEditing" class="button">Save</button>
